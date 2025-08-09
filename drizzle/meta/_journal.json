@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1754740638108,
+      "tag": "0000_moaning_living_lightning",
+      "breakpoints": true
+    }
+  ]
+}
