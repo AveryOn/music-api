@@ -6,7 +6,13 @@ import { drizzle } from 'drizzle-orm/better-sqlite3';
 import { eq } from 'drizzle-orm';
 import { files } from './db/schema/index.js'; // важно: .js при NodeNext
 import { env } from './config.js';
+import { mkdirSync } from 'node:fs';
+import { join } from 'node:path';
 
+
+const dir = join(process.cwd(), 'data');
+mkdirSync(dir, { recursive: true });
+console.debug(`Папка создана: ${dir}`);
 
 const sqlite = new Database(env.DB_FILE_PATH);
 const db = drizzle(sqlite);
@@ -20,5 +26,5 @@ app.get('/files/:id', (c) => {
   return c.body(null, 200);
 });
 
-const port = 3000;
-serve({ fetch: app.fetch, port }, () => console.log(`http://localhost:${port}`));
+const PORT = env.PORT;
+serve({ fetch: app.fetch, port: PORT }, () => console.log(`http://localhost:${PORT}`));
