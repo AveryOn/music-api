@@ -19,6 +19,10 @@ const db = drizzle(sqlite);
 
 const app = new Hono();
 
+app.get('/ping', (c) => {
+  return c.body(JSON.stringify({status: 'ok'}), 200);
+});
+
 app.get('/files/:id', (c) => {
   const id = Number(c.req.param('id'));
   if (typeof id !== 'string') return c.json({ error: 'bad id' }, 400);
